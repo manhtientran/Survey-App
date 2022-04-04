@@ -4,6 +4,9 @@
 const express = require("express");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
+const Users = require("./models/Users");
+const Quizes = require("./models/Quizes");
+const { sequelize } = require("./PostgresSetUp");
 
 // ------------------------------------------------------
 
@@ -17,18 +20,6 @@ app.use(express.json({ extended: false })); // It accepts JSON data into our API
 
 // App configuration
 // Connect to Postgres
-const host = "localhost";
-const database_port = "5432";
-const database = "survey_app";
-
-const user = "postgres";
-const password = "123456";
-const sequelize = new Sequelize(database, user, password, {
-  host,
-  database_port,
-  dialect: "postgres",
-  logging: false,
-});
 
 const connectDB = async () => {
   try {
