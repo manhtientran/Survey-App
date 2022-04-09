@@ -1,12 +1,23 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-const { checkConnection } = require("./postgres_set_up/connectDB");
+const { checkConnection, initTables } = require("./connectDB");
+const auth = require("./routes/auth");
+const questions = require("./routes/questions");
+
+app.use(express.json());
 
 // Check connection to the db
 checkConnection();
 
+initTables();
+
 // Express app
+// Using middleware
+app.use("/auth", auth);
+
+app.use("/questions", questions);
+
 app.get("/", (req, res) => {
   res.send("The server is running......");
 });

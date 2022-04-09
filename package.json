@@ -19,6 +19,7 @@
   "homepage": "https://github.com/manhtientran/Survey-App#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "object-hash": "^3.0.0",
     "pg": "^8.7.3",
     "pq": "^0.0.3",
     "sequelize": "^6.18.0"

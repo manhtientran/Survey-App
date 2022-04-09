@@ -1,3 +1,4 @@
+const initDB = `
 CREATE TABLE IF NOT EXISTS Users (
    userId SERIAL PRIMARY KEY,
    email VARCHAR(255) UNIQUE NOT NULL,
@@ -30,4 +31,6 @@ CREATE TABLE IF NOT EXISTS  Answers (
    answerContent VARCHAR(255) NOT NULL,
 
    FOREIGN KEY (questionId) REFERENCES Questions(questionId)
-);
+);`;
+
+module.exports = { initDB };

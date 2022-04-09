@@ -1,4 +1,5 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
+const { initDB } = require("./SQL_commands/initDB");
 
 const host = "localhost";
 const port = "5432";
@@ -25,4 +26,18 @@ const checkConnection = async () => {
 
 // checkConnection();
 
-module.exports = { checkConnection, sequelize };
+const initTables = async () => {
+  try {
+    await sequelize.query(initDB);
+    console.log("Successfully initialize tables");
+
+    const [results, metadata] = await sequelize.query(
+      `SELECT "table_name" FROM information_schema.tables WHERE table_schema = 'public';`
+    );
+    console.log("ALL TABLES: ", results);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports = { checkConnection, sequelize, initTables };
